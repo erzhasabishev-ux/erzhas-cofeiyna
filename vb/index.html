@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VELVET & BEAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1A1A;--ink2:#242220;--cream:#F9F6F0;--gold:#C5A059;--sage:#8A9378;--mut:#a39e93;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font:300 16px/1.7 Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.1;letter-spacing:.01em}
+h1{font-size:clamp(2.8rem,8vw,6.2rem)}h2{font-size:clamp(2rem,4.5vw,3.4rem)}h3{font-size:1.6rem}
+a{color:inherit}button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1160px;margin:auto;padding:0 24px}.sec{padding:96px 0}
+.cream{background:var(--cream);color:var(--ink)}.cream .mut{color:#6b665c}.mut{color:var(--mut)}
+.gold{color:var(--gold)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(14px + env(safe-area-inset-top,0px)) 24px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(26,26,26,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(197,160,89,.18)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.14em;text-decoration:none;white-space:nowrap}
+.links{display:flex;gap:24px;font-size:.86rem}.links a{text-decoration:none;opacity:.75;padding:4px 0;border-bottom:1px solid transparent;transition:.3s}
+.links a:hover,.links a.on{opacity:1;border-color:var(--gold)}
+.navr{display:flex;gap:10px;align-items:center}
+.lang{display:flex;border:1px solid rgba(197,160,89,.4)}.lang button{padding:6px 10px;font-size:.75rem;opacity:.75;white-space:nowrap}.lang .on{background:var(--gold);color:var(--ink);opacity:1}.lang.m{display:none}
+.ib{position:relative;width:42px;height:42px;border:1px solid rgba(197,160,89,.4);border-radius:50%;display:grid;place-items:center}
+.ib:hover{background:var(--gold);color:var(--ink)}#burger{display:none}
+.badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--ink);font-size:.7rem;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;font-weight:500}
+.btn{display:inline-block;padding:14px 30px;background:var(--gold);color:var(--ink);font-weight:500;font-size:.88rem;letter-spacing:.06em;text-decoration:none;border:1px solid var(--gold);transition:.3s}
+.btn:hover{background:transparent;color:var(--gold)}.btn.ghost{background:transparent;color:var(--cream);border-color:rgba(249,246,240,.4)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}.cream .btn.ghost{color:var(--ink);border-color:rgba(26,26,26,.4)}
+.page{animation:pg .7s ease both}@keyframes pg{from{opacity:0;transform:translateY(14px)}}
+.hero{min-height:100vh;min-height:100svh;position:relative;display:flex;align-items:flex-end;padding:140px 0 80px;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s;background-size:cover}
+.slide.on{opacity:1}
+.s0{background:radial-gradient(circle at 70% 30%,#6b4a2b 0,transparent 45%),radial-gradient(circle at 20% 80%,#3a2a1c 0,transparent 50%),#1A1A1A}
+.s1{background:radial-gradient(circle at 30% 40%,#5a6048 0,transparent 45%),radial-gradient(circle at 80% 80%,#7a5a2e 0,transparent 40%),#1A1A1A}
+.s2{background:radial-gradient(circle at 60% 60%,#8a6b35 0,transparent 42%),radial-gradient(circle at 10% 10%,#2f2a24 0,transparent 55%),#1A1A1A}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#1A1A1A)}
+.hero .wrap{position:relative;z-index:2}.hero p{max-width:520px;margin:24px 0 36px;color:#d8d2c5}
+.status{display:inline-flex;gap:10px;align-items:center;padding:8px 18px;margin-bottom:28px;border:1px solid rgba(197,160,89,.4);border-radius:30px;background:rgba(26,26,26,.4);backdrop-filter:blur(10px);font-size:.85rem}
+.dot{width:8px;height:8px;border-radius:50%;background:#8fb36b;box-shadow:0 0 0 4px rgba(143,179,107,.25)}.dot.off{background:#b5614f;box-shadow:none}
+.dots{position:absolute;right:24px;bottom:40px;z-index:3;display:flex;gap:8px}.dots button{width:26px;height:2px;background:rgba(249,246,240,.35)}.dots .on{background:var(--gold)}
+.tick{overflow:hidden;border-block:1px solid rgba(197,160,89,.25);padding:18px 0;background:var(--ink2)}
+.tick div{display:flex;gap:56px;width:max-content;animation:tk 38s linear infinite;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--gold)}
+@keyframes tk{to{transform:translateX(-50%)}}
+.grid{display:grid;gap:28px}.g3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center}
+.photo{aspect-ratio:4/5;position:relative;background:radial-gradient(circle at 65% 35%,var(--c1,#7a5a2e),transparent 50%),radial-gradient(circle at 25% 80%,var(--c2,#3a2a1c),transparent 55%),#2a2622}
+.photo svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.rev{max-width:760px;margin:auto;text-align:center;min-height:210px}.rev q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.35;quotes:none;display:block}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:32px 0;border-bottom:1px solid rgba(197,160,89,.25)}
+.tab{padding:12px 20px;font-size:.88rem;opacity:.6;border-bottom:2px solid transparent;margin-bottom:-1px}.tab.on,.tab:hover{opacity:1;color:var(--gold);border-color:var(--gold)}
+.card{border:1px solid rgba(197,160,89,.22);background:var(--ink2);padding:26px;display:flex;flex-direction:column;gap:8px;transition:.3s;text-align:left}
+.card:hover{border-color:var(--gold);transform:translateY(-3px)}.card .pr{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;color:var(--gold)}
+.ovl{position:fixed;inset:0;z-index:80;background:rgba(10,10,10,.7);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+.ovl.open{display:flex}
+.modal{background:var(--ink);border:1px solid var(--gold);max-width:520px;width:100%;max-height:90vh;overflow:auto;padding:32px;animation:pg .35s}
+.opt{margin:18px 0 6px;font-size:.8rem;color:var(--mut)}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.chip{padding:8px 16px;border:1px solid rgba(249,246,240,.25);font-size:.85rem}.chip.on{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);z-index:90;background:var(--ink);border-left:1px solid var(--gold);transform:translateX(100%);transition:.45s cubic-bezier(.7,0,.2,1);display:flex;flex-direction:column;padding:28px}
+.drawer.open{transform:none}.dbody{flex:1;overflow:auto;margin:20px 0}
+.line{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(249,246,240,.1)}.line small{color:var(--mut);display:block;line-height:1.4}
+.qty{display:inline-flex;align-items:center;gap:10px;margin-top:6px}.qty button{width:26px;height:26px;border:1px solid rgba(249,246,240,.3)}
+.row{display:flex;justify-content:space-between;padding:4px 0}.tot{font-size:1.2rem;color:var(--gold);border-top:1px solid var(--gold);margin-top:8px;padding-top:10px}
+label{display:block;font-size:.8rem;color:var(--mut);margin:16px 0 6px}
+input,select,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(197,160,89,.5);color:inherit;font:inherit;padding:10px 0;border-radius:0}
+select option{color:#1A1A1A}input:focus,select:focus{outline:0;border-color:var(--gold)}
+.cream input,.cream select{border-color:#b8a87f}.err{color:#d9806b;font-size:.78rem;min-height:1.1em}
+input[type=range]{accent-color:var(--gold);border:0;padding:0}
+.steps{display:flex;gap:6px;flex-wrap:wrap}.steps button{flex:1;min-width:110px;padding:14px 8px;border-top:2px solid #cdbf9c;text-align:left;font-size:.85rem;opacity:.6}.steps .on{border-color:var(--gold);opacity:1}
+.bar{height:3px;background:#ddd2b8;margin:18px 0}.bar i{display:block;height:100%;background:var(--gold);transition:width .6s}
+.map{background:#242220;border:1px solid rgba(197,160,89,.3);aspect-ratio:4/3;width:100%}
+.map text{fill:#a39e93;font-size:11px;font-family:Inter}.pin{cursor:pointer}
+.ok{text-align:center;padding:40px 10px}.ok .no{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--gold);margin:10px 0}
+.tier{border:1px solid rgba(197,160,89,.3);padding:24px}.tier.on{border-color:var(--gold);background:rgba(197,160,89,.08)}
+footer{border-top:1px solid rgba(197,160,89,.2);padding:48px 0 32px;text-align:center;font-size:.85rem;color:var(--mut)}
+#toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,120px);background:var(--gold);color:var(--ink);padding:12px 24px;z-index:99;transition:.4s;font-size:.9rem;max-width:90vw;text-align:center}#toast.on{transform:translate(-50%,0)}
+#cur,#ring{position:fixed;top:0;left:0;pointer-events:none;z-index:200;border-radius:50%;display:none}
+#cur{width:6px;height:6px;background:var(--gold);margin:-3px}#ring{width:36px;height:36px;margin:-18px;border:1px solid var(--gold);transition:width .25s,height .25s,margin .25s}
+#ring.h{width:60px;height:60px;margin:-30px;background:rgba(197,160,89,.12)}
+@media(hover:hover) and (pointer:fine){body.cc,body.cc *{cursor:none!important}#cur,#ring{display:block}}
+@media(max-width:1000px){.links{display:none;position:fixed;top:68px;left:0;right:0;flex-direction:column;background:var(--ink);padding:24px;gap:18px;border-bottom:1px solid var(--gold)}.links.open{display:flex}#burger{display:grid}.sec{padding:64px 0}.lang.m{display:flex;align-self:flex-start}}
+@media(max-width:560px){nav{padding-left:14px;padding-right:14px}.logo{font-size:1.05rem;letter-spacing:.04em}.lang.d .lg{display:none}.lang button{padding:6px 8px}.navr{gap:6px}.ib{width:38px;height:38px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="ring"></div>
+<nav>
+ <a class="logo" href="#home">VELVET &amp; BEAN</a>
+ <div class="links" id="links"></div>
+ <div class="navr">
+  <div class="lang d" id="ld1" role="group"></div>
+  <button class="ib" id="cartb" data-a="cart">
+   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1 12H6L5 8zM9 8a3 3 0 016 0"/></svg><span class="badge" id="cnt">0</span></button>
+  <button class="ib" id="burger" data-a="burger"><svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 8h16M4 16h16"/></svg></button>
+ </div>
+</nav>
+<main id="app"></main>
+<footer><div class="serif" style="font-size:1.4rem;color:var(--cream);letter-spacing:.14em">VELVET &amp; BEAN</div><p style="margin-top:8px" id="foot"></p></footer>
+
+<div class="ovl" id="mo"><div class="modal" id="mbox"></div></div>
+<div class="ovl" id="co"><div class="modal" id="cbox"></div></div>
+<aside class="drawer" id="dr"></aside>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),TAX=.08;
+/* ===== language + currency ===== */
+const LB=[['Қаз','₸','Қазақша','kk'],['Рус','₽','Русский','ru'],['Eng','$','English','en']];
+/* r = units of local currency per 1 USD (approximate, edit here), step = rounding step, ss = slider step */
+const CUR=[{s:'₸',r:500,step:50,ss:500},{s:'₽',r:85,step:5,ss:50},{s:'$',r:1,step:.01,ss:1}];
+let L=2;try{const v=localStorage.getItem('vb_l');L=v!==null?+v:(/^kk/i.test(navigator.language)?0:/^ru/i.test(navigator.language)?1:2)}catch(e){L=2}
+if(!(L>=0&&L<3))L=2;
+const C=()=>CUR[L];
+const loc=usd=>{const c=C();return Math.round(usd*c.r/c.step)*c.step};
+const rnd=n=>{const c=C();return Math.round(n/c.step)*c.step};
+const money=n=>{const c=C();if(L==2)return '$'+n.toFixed(2);return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')+'\u00A0'+c.s};
+const unitTxt=()=>L==2?'$1':C().r+'\u00A0'+C().s;
+const fmt=h=>L==2?((h%12||12)+':00 '+(h<12?'AM':'PM')):h+':00';
+const U={
+home:['Басты бет','Главная','Home'],menu:['Мәзір','Меню','Menu'],craft:['Біздің шеберлік','Наше мастерство','Our craft'],locs:['Мекенжайлар','Адреса','Locations'],reserve:['Брондау','Бронь','Reserve'],club:['Клуб','Клуб','The club'],
+cartOpen:['Себетті ашу','Открыть корзину','Open cart'],navAria:['Навигация','Навигация','Navigation'],
+foot:['Тікелей саудамен алынған кофе, шағын партиялармен қуырылады. © 2026','Кофе прямых поставок, обжаренный малыми партиями. © 2026','Direct-trade coffee, roasted in small batches. © 2026'],
+stOpen:['Бүгін {0}-ге дейін ашық','Сегодня открыто до {0}','Open today until {0}'],stClosed:['Қазір жабық · {0}-де ашылады','Сейчас закрыто · откроется в {0}','Closed now · opens at {0}'],
+h1:['Кофе, әр градусына<br>дейін ойластырылған.','Кофе, продуманный<br>до последнего градуса.','Coffee, considered<br>to the last degree.'],
+heroP:['Біз он екі фермадан тікелей сатып аламыз, сегіз келілік партиялармен қуырамыз және әр кесені жалғыз кесе сияқты құямыз.','Мы закупаем зерно напрямую у двенадцати ферм, обжариваем партиями по восемь килограммов и готовим каждую чашку так, будто она единственная.','We buy directly from twelve farms, roast in batches of eight kilos, and pour every cup as if it were the only one.'],
+btnMenu:['Мәзірді қарау','Смотреть меню','Explore menu'],btnBook:['Үстел брондау','Забронировать стол','Book a table'],slideN:['{0}-слайд','Слайд {0}','Slide {0}'],
+manT:['Біздің манифест','Наш манифест','Our manifesto'],
+manP:['Кофе — сусыннан бұрын егін. Біз фермерлерге әділ сауда бағасынан жоғары төлейміз, орынның дәмі сезілетіндей жеңіл, ал қамқорлықтың дәмі сезілетіндей ұзақ қуырамыз және екеуін де байқауға болатындай тыныш залдарда ұсынамыз.','Кофе — это урожай раньше, чем напиток. Мы платим фермерам выше цен справедливой торговли, обжариваем достаточно светло, чтобы чувствовалось место, и достаточно бережно, чтобы чувствовалась забота, и подаём в залах, где достаточно тихо, чтобы заметить и то и другое.','Coffee is a harvest before it is a drink. We pay farmers above fair-trade rates, roast light enough to taste the place and long enough to taste the care, and serve it in rooms quiet enough to notice both.'],
+manBtn:['Шеберлігімізбен танысу','Узнать о нашем мастерстве','Read our craft'],revT:['Қонақтар не дейді','Что говорят гости','What guests say'],prev:['Алдыңғы','Назад','Previous'],next:['Келесі','Далее','Next'],
+menuT:['Мәзір және тапсырыс','Меню и заказ','Menu & ordering'],menuP:['Затты баптау үшін таңдаңыз, сосын себеттен тапсырыс беріңіз.','Выберите позицию, чтобы настроить её, затем оформите заказ в корзине.','Choose an item to customise it, then check out from your cart.'],
+curNote:['Бағалар жуықтап ₸-мен берілген (1 $ ≈ {0} ₸).','Цены указаны в ₽ по ориентировочному курсу (1 $ ≈ {0} ₽).',''],
+custom:['Баптау','Настроить','Customise'],
+craftT:['Бастауы — қысқа жолсыз','Происхождение без компромиссов','Origin, without shortcuts'],
+craftP:['Velvet & Bean 2014 жылы бір диірмен және бір сұрақпен басталды: тізбектегі әркім жақсы төленсе, кофенің дәмі қандай болар еді? Біз әр фермаға жыл сайын барамыз, бағаны егіннен бұрын келісеміз және не төлейтінімізді жариялаймыз.','Velvet & Bean начался в 2014 году с одной кофемолки и одного вопроса: каким был бы вкус кофе, если бы все звенья цепочки получали достойную оплату? Мы ежегодно бываем на каждой ферме, договариваемся о цене до сбора урожая и публикуем, сколько платим.','Velvet & Bean started in 2014 with one grinder and a question: what would coffee taste like if everyone in the chain were paid well? We visit each farm yearly, agree prices before harvest, and publish what we pay.'],
+roT:['Мира Оконкво, бас қуырушы','Мира Оконкво, главный обжарщик','Mira Okonkwo, master roaster'],
+roP:['Барабан басында он екі жыл, оның үшеуі Найробиде, онда ол дәнді дыбысынан тануды үйренген. Мира әр лотты өз бетінше профильдейді және жөнелтер алдында әр партияны купинг үстелінде бекітеді.','Двенадцать лет у барабана, три из них в Найроби, где она научилась определять зерно на слух. Мира сама профилирует каждый лот и утверждает каждую партию за столом каппинга перед отправкой.','Twelve years behind the drum, three of them in Nairobi, where she learned to read a bean by sound. Mira profiles every lot on her own and approves each batch at the cupping table before it ships.'],
+roastT:['Қуыру қадам-қадаммен','Обжарка шаг за шагом','The roast, step by step'],roastP:['Барабан ішінде не болатынын көру үшін кезеңді таңдаңыз.','Выберите этап, чтобы увидеть, что происходит внутри барабана.','Select a stage to see what happens inside the drum.'],
+locT:['Бізді табыңыз','Как нас найти','Find us'],openNow:['Қазір ашық','Сейчас открыто','Open now'],closedNow:['Қазір жабық','Сейчас закрыто','Closed now'],daily:['күн сайын','ежедневно','daily'],
+call:['Қоңырау шалу {0}','Позвонить {0}','Call {0}'],resHere:['Осында брондау','Забронировать здесь','Reserve here'],mapAria:['Мекенжайлар картасы','Карта адресов','Map of locations'],
+resT:['Орын брондау','Забронировать место','Reserve a seat'],
+resP:['Үстелді, жұмадағы купингті немесе он екі қонаққа дейінгі жеке шеберлік сабағын брондаңыз. Растау бірден келеді.','Забронируйте стол, дегустацию по пятницам или частный мастер-класс по каппингу до двенадцати гостей. Подтверждение приходит мгновенно.','Book a table, a Friday cupping, or a private masterclass for up to twelve guests. Confirmation is instant.'],
+resWhat:['Брондағым келетіні','Что я хочу забронировать','I would like to book'],
+fName:['Аты-жөні','Полное имя','Full name'],fMail:['Электрондық пошта','Эл. почта','Email'],fLoc:['Орналасқан жері','Адрес','Location'],fDate:['Күні','Дата','Date'],fTime:['Уақыты','Время','Time'],fGuests:['Қонақ саны','Количество гостей','Guests'],
+confirm:['Брондауды растау','Подтвердить бронь','Confirm booking'],
+eName:['Аты-жөніңізді толық енгізіңіз.','Введите полное имя.','Enter your full name.'],eMail:['Жарамды электрондық пошта енгізіңіз.','Введите корректный адрес почты.','Enter a valid email address.'],eDate:['Күнді таңдаңыз.','Выберите дату.','Choose a date.'],ePast:['Бүгіннен бастап күнді таңдаңыз.','Выберите дату, начиная с сегодняшней.','Choose a date from today onwards.'],
+okBook:['Брондау расталды','Бронь подтверждена','Booking confirmed'],
+okBookP:['{0}, {1} қонақ, {2}<br>{3} күні сағат {4}.<br>Растау {5} мекенжайына жіберілуде.','{0}, гостей: {1}, {2}<br>{3} в {4}.<br>Подтверждение отправляется на {5}.','{0} for {1} at {2}<br>{3} at {4}.<br>A confirmation is on its way to {5}.'],
+again:['Тағы брондау','Забронировать ещё','Make another booking'],
+clubP:['Әр {0} үшін екі ұпай жинаңыз. Жыл сайын деңгейіңізді көтеріп, қуыру цехының көбірек мүмкіндігін ашыңыз.','Получайте два балла за каждые {0}. Повышайте уровень каждый год и открывайте больше возможностей обжарочной.','Earn two points per {0}. Move up a tier each year and unlock more of the roastery.'],
+ptsYear:['жылына {0} ұпай','{0} баллов в год','{0} points a year'],
+estT:['Деңгейіңізді бағалаңыз','Оцените свой уровень','Estimate your tier'],visits:['Аптасына келу саны:','Визитов в неделю:','Visits per week:'],spend:['Бір келудегі орташа шығын:','Средний чек за визит:','Average spend per visit:'],
+resLine:['жылына {0} ұпай · {1}','{0} баллов в год · {1}','{0} points a year · {1}'],nextT:['{0} деңгейіне дейін тағы {1} ұпай қалды.','До уровня {0} осталось {1} баллов.','{1} more points to reach {0}.'],topT:['Сіз ең жоғары деңгейге жеттіңіз.','Вы достигли высшего уровня.','You have reached our highest tier.'],
+joinT:['Тегін қосылыңыз','Вступить бесплатно','Join for free'],jName:['Аты','Имя','Name'],joinBtn:['Клубқа қосылу','Вступить в клуб','Join the club'],eN:['Атыңызды енгізіңіз.','Введите имя.','Enter your name.'],
+welcome:['Қош келдіңіз','Добро пожаловать','Welcome'],welcomeP:['Сіз біздесіз. Бірінші сусыныңыз біздің есебімізден, ал бастапқы ұпайыңыз — 100.','Вы с нами. Первый напиток за наш счёт, а на вашем счету уже 100 баллов.','You are in. Your first drink is on us, and you start at 100 points.'],toastM:['Мүшелік жасалды','Членство оформлено','Membership created'],
+close:['Жабу','Закрыть','Close'],less:['Азырақ','Меньше','Fewer'],more:['Көбірек','Больше','More'],add:['Себетке қосу · {0}','Добавить в корзину · {0}','Add to cart · {0}'],added:['{0} себетке қосылды','{0} добавлен в корзину','{0} added to cart'],
+cartT:['Сіздің себетіңіз','Ваша корзина','Your cart'],cartClose:['Себетті жабу','Закрыть корзину','Close cart'],empty:['Себетіңіз бос. Мәзірден бірдеңе таңдаңыз.','Корзина пуста. Выберите что-нибудь в меню.','Your cart is empty. Pick something from the menu.'],
+rm:['Жою','Удалить','Remove'],sub:['Аралық сома','Подытог','Subtotal'],tax:['Салық (8%)','Налог (8%)','Tax (8%)'],tot:['Барлығы','Итого','Total'],chk:['Төлеуге өту','К оплате','Checkout'],browse:['Мәзірді қарау','Смотреть меню','Browse menu'],
+payT:['Төлем','Оплата','Checkout'],cName:['Карточкадағы аты','Имя на карте','Name on card'],cNo:['Карточка нөмірі (демо)','Номер карты (демо)','Card number (demo)'],cExp:['Мерзімі','Срок','Expiry'],expPh:['АА/ЖЖ','ММ/ГГ','MM/YY'],payBtn:['Төлеу {0}','Оплатить {0}','Pay {0}'],
+eCN:['Карточкадағы атты енгізіңіз.','Введите имя на карте.','Enter the name on the card.'],eCNo:['13–19 сан енгізіңіз.','Введите от 13 до 19 цифр.','Enter 13 to 19 digits.'],eExp:['АА/ЖЖ пішімін қолданыңыз.','Используйте формат ММ/ГГ.','Use MM/YY.'],eCvc:['3 немесе 4 сан.','3 или 4 цифры.','3 or 4 digits.'],
+paid:['Төлем сәтті өтті','Оплата прошла успешно','Payment successful'],orderN:['Тапсырыс {0}','Заказ {0}','Order {0}'],paidP:['{0} төленді. Атыңызды барда шамамен 8 минуттан кейін атаймыз.','Списано {0}. Мы назовём ваше имя у стойки примерно через 8 минут.','{0} charged. We will call your name at the bar in about 8 minutes.'],done:['Дайын','Готово','Done'],
+toastB:['Брондау расталды','Бронь подтверждена','Booking confirmed']};
+const t=(k,...a)=>U[k][L].replace(/\{(\d)\}/g,(_,i)=>a[i]);
+const TABS={espresso:['Эспрессо-бар','Эспрессо-бар','Espresso bar'],pour:['Пуровер','Пуровер','Pour over'],signature:['Фирмалық сусындар','Авторские напитки','Signature drinks'],bakery:['Қолдан жасалған нан-тоқаш','Авторская выпечка','Artisanal bakery'],beans:['Тұтас дәнді қаптар','Зерно в пачках','Whole bean bags']};
+const MENU=[
+['e1','espresso',['Velvet эспрессосы','Эспрессо Velvet','Velvet Espresso'],['Үй қоспамыздан қос шот: қара какао, қуырылған фундук, балды ұзақ дәм.','Двойной шот нашего фирменного купажа: тёмное какао, жареный фундук, долгое медовое послевкусие.','Double shot of our house blend: dark cacao, toasted hazelnut, a long honeyed finish.'],4.5],
+['e2','espresso',['Кортадо','Кортадо','Cortado'],['Эспрессо мен жібектей бұқтырылған сүттің тең бөлігі, қалың шыныда беріледі.','Эспрессо и бархатистое взбитое молоко в равных частях, подаётся в толстостенном стакане.','Equal parts espresso and silky steamed milk, served in a heavy glass.'],5],
+['e3','espresso',['Флэт уайт','Флэт уайт','Flat White'],['Ристретто негізі, жұқа әрі жылтыр микрокөбік.','Основа из ристретто, тонкая глянцевая микропена.','Ristretto base, microfoam poured thin and glossy.'],5.5],
+['e4','espresso',['Кардамонды латте','Латте с кардамоном','Cardamom Latte'],['Бір текті эспрессо, үйде жасалған кардамон сиропы және бұқтырылған сүт.','Моносортовой эспрессо, домашний сироп из кардамона и взбитое молоко.','Single-origin espresso, house cardamom syrup and steamed milk.'],6.5],
+['p1','pour',['Эфиопия Гуджи V60','Эфиопия Гуджи V60','Ethiopia Guji V60'],['Жасмин, бергамот және шабдалы. Қолмен құйылады, 4 минут.','Жасмин, бергамот и персик. Заваривается вручную, 4 минуты.','Jasmine, bergamot and peach. Hand-poured, 4 minutes.'],8],
+['p2','pour',['Колумбия Уила Chemex','Колумбия Уила Chemex','Colombia Huila Chemex'],['Қызыл алма, панела және сүтті шоколад. Таза әрі жомарт.','Красное яблоко, панела и молочный шоколад. Чистый и щедрый вкус.','Red apple, panela and milk chocolate. Clean and generous.'],8],
+['p3','pour',['Кения Кириньяга Kalita','Кения Кириньяга Kalita','Kenya Kirinyaga Kalita'],['Қара қарақат, грейпфрут және көпіршікті қышқылдық.','Чёрная смородина, грейпфрут и игристая кислотность.','Blackcurrant, grapefruit and a sparkling acidity.'],9],
+['s1','signature',['Алтын жапырақты мокко','Мокко с золотым листом','Gold Leaf Mocha'],['Қара Valrhona шоколады, қос эспрессо, жеуге болатын алтын шаң.','Тёмный шоколад Valrhona, двойной эспрессо, съедобная золотая пыль.','Dark Valrhona chocolate, double espresso, edible gold dust.'],9],
+['s2','signature',['Түтінделген үйеңкі кортадосы','Кортадо с копчёным клёном','Smoked Maple Cortado'],['Алма ағашында түтінделген үйеңкі сиропы, эспрессо, бұқтырылған сүт.','Кленовый сироп, копчёный на яблоневой щепе, эспрессо, взбитое молоко.','Applewood-smoked maple, espresso, steamed milk.'],7.5],
+['s3','signature',['Колд брю тоник','Колд брю тоник','Cold Brew Tonic'],['18 сағаттық колд брю тониктің үстінде, апельсин қабығы, розмарин.','18-часовой колд брю на тонике, цедра апельсина, розмарин.','18-hour cold brew over tonic, orange peel, rosemary.'],7],
+['b1','bakery',['Сары майлы круассан','Сливочный круассан','Butter Croissant'],['72 сағат қабатталған, таң ата пісірілген.','72 часа слоения, выпечка на рассвете.','Laminated 72 hours, baked at dawn.'],5],
+['b2','bakery',['Пісте финансьесі','Финансье с фисташкой','Pistachio Financier'],['Қоңыр майлы бадам кексі, сицилиялық пісте.','Миндальный кекс на коричневом масле с сицилийской фисташкой.','Brown butter almond cake with Sicilian pistachio.'],5.5],
+['b3','bakery',['Зәйтүн майлы кекс','Кекс на оливковом масле','Olive Oil Cake'],['Цитрус глазурі, теңіз тұзы, қаймақ.','Цитрусовая глазурь, морская соль, сметана.','Citrus glaze, sea salt, crème fraîche.'],6.5],
+['w1','beans',['Эфиопия Гуджи','Эфиопия Гуджи','Ethiopia Guji'],['250 г қап. Жасмин, шабдалы, бергамот. Жеңіл қуыру.','Пачка 250 г. Жасмин, персик, бергамот. Светлая обжарка.','250g bag. Jasmine, peach, bergamot. Light roast.'],22],
+['w2','beans',['№1 үй қоспасы','Фирменный купаж №1','House Blend No. 1'],['250 г қап. Какао, фундук, карамель. Орташа-қараңғы қуыру.','Пачка 250 г. Какао, фундук, карамель. Средне-тёмная обжарка.','250g bag. Cacao, hazelnut, caramel. Medium-dark roast.'],19],
+['w3','beans',['Колумбия Уила','Колумбия Уила','Colombia Huila'],['250 г қап. Қызыл алма, панела, шоколад. Орташа қуыру.','Пачка 250 г. Красное яблоко, панела, шоколад. Средняя обжарка.','250g bag. Red apple, panela, chocolate. Medium roast.'],21]];
+const D=(k,l,o)=>({k,l,o});
+const gMilk=D('Milk',['Сүт','Молоко','Milk'],[[['Толық майлы','Цельное','Whole'],0],[['Сұлы','Овсяное','Oat'],.75],[['Бадам','Миндальное','Almond'],.75]]);
+const gSweet=D('Sweetness',['Тәттілік','Сладость','Sweetness'],[[['Тәттісіз','Без сахара','None'],0],[['Аздап','Слабая','Light'],0],[['Орташа','Средняя','Medium'],0],[['Толық','Полная','Full'],0]]);
+const gTemp=D('Temp',['Температура','Температура','Temperature'],[[['Ыстық','Горячий','Hot'],0],[['Мұздай','Со льдом','Iced'],0]]);
+const gSize=D('Size',['Көлемі','Размер','Size'],[[['Кіші','Маленький','Small'],0],[['Орташа','Средний','Medium'],.75],[['Үлкен','Большой','Large'],1.5]]);
+const OPTS={espresso:[gMilk,gSweet,gTemp,gSize],signature:[gMilk,gSweet,gTemp,gSize],
+pour:[D('Temp',gTemp.l,[[['Ыстық','Горячий','Hot'],0],[['Мұздай','Со льдом','Iced'],.5]]),D('Size',gSize.l,[[['Қалыпты','Обычный','Regular'],0],[['Үлкен','Большой','Large'],1.5]])],
+bakery:[D('Serve',['Беру тәсілі','Подача','Served'],[[['Бөлме температурасында','Комнатной температуры','Room temperature'],0],[['Жылытылған','Подогретый','Warmed'],0]])],
+beans:[D('Bag',['Қап көлемі','Размер пачки','Bag size'],[[['250 г','250 г','250g'],0],[['500 г','500 г','500g'],17],[['1 кг','1 кг','1kg'],32]]),D('Grind',['Ұнтақтау','Помол','Grind'],[[['Тұтас дән','Зерно','Whole bean'],0],[['Эспрессо','Эспрессо','Espresso'],0],[['Сүзгі','Фильтр','Filter'],0],[['Француз пресс','Френч-пресс','Press'],0]])]};
+const LOCS=[
+{n:['Трайбека флагманы','Флагман в Трайбеке','Tribeca Flagship'],sn:['Трайбека','Трайбека','Tribeca'],a:['42 Hudson Street, Нью-Йорк','42 Hudson Street, Нью-Йорк','42 Hudson Street, New York'],t:'+1 212 555 0142',h:[7,21],x:210,y:130,d:['Біздің алғашқы бар және қуыру цехымыз. Демдеу үстелінде сегіз орын.','Наш первый бар и обжарочная. Восемь мест у стойки для заваривания.','Our original bar and roastery. Eight seats at the brew counter.']},
+{n:['Шордич қуыру цехы','Обжарочная в Шордиче','Shoreditch Roastery'],sn:['Шордич','Шордич','Shoreditch'],a:['18 Redchurch Street, Лондон','18 Redchurch Street, Лондон','18 Redchurch Street, London'],t:'+44 20 7946 0818',h:[7,20],x:430,y:80,d:['Қуыру күн сайын таңертең осында өтеді. Жұма сайын купинг.','Обжарка проходит здесь каждое утро. Каппинг по пятницам.','Roasting happens on site every morning. Cuppings on Fridays.']},
+{n:['Аояма галереясы','Галерея Аояма','Aoyama Gallery'],sn:['Аояма','Аояма','Aoyama'],a:['3-12 Minamiaoyama, Токио','3-12 Minamiaoyama, Токио','3-12 Minamiaoyama, Tokyo'],t:'+81 3 5550 0199',h:[8,22],x:560,y:210,d:['Тыныш, минималистік, кеш жұмыс істейді. Тек пуровер.','Тихо, минималистично, работаем допоздна. Только пуровер.','Quiet, minimal, and open late. Pour-over only.']}];
+const ORIG=[['Эфиопия Гуджи','Колумбия Уила','Кения Кириньяга','Панама Гейша','Гватемала Антигуа','№1 үй қоспасы'],['Эфиопия Гуджи','Колумбия Уила','Кения Кириньяга','Панама Гейша','Гватемала Антигуа','Купаж №1'],['Ethiopia Guji','Colombia Huila','Kenya Kirinyaga','Panama Geisha','Guatemala Antigua','House Blend No. 1']];
+const REVS=[[['Мен кез келген жерде ішкен ең жақсы флэт уайт. Алтын мокко — таза театр.','Амелия Р., тағам сыншысы'],['Әр кесе фермасының тарихымен келеді. Бұл кофе ішу тәсілімді өзгертті.','Даниэл К., тұрақты қонақ'],['Velvet & Bean-дегі купинг көптеген дегустациялық мәзірден жақсы.','София М., сомелье']],
+[['Лучший флэт уайт, который я пробовала. Мокко с золотом — чистый театр.','Амелия Р., ресторанный критик'],['С каждой чашкой приходит история фермы. Это изменило то, как я пью кофе.','Даниэль К., постоянный гость'],['Каппинг в Velvet & Bean лучше большинства дегустационных меню.','София М., сомелье']],
+[['The best flat white I have had anywhere. The gold mocha is pure theatre.','Amelia R., Food Critic'],['Every cup arrives with the story of the farm. It changed how I drink coffee.','Daniel K., Regular'],['A cupping at Velvet & Bean is better than most tasting menus.','Sofia M., Sommelier']]];
+const STEPS=[
+[[['Жасыл','Зелёное зерно','Green'],'20°C','0:00',['Тікелей сауда фермаларынан 11% ылғалдылықпен жасыл дәндер келеді. Әр лотты барабанға салмас бұрын сынаймыз.','Промытое зерно с ферм прямых поставок приходит с влажностью 11%. Мы пробуем каждый лот, прежде чем он попадёт в барабан.','Washed beans from direct-trade farms arrive at 11% moisture. We sample every lot before it enters the drum.'],5]],
+[[['Кептіру','Сушка','Drying'],'160°C','4:00',['Дәндер ылғалды баяу жоғалтып, жасылдан бозғылт сарыға ауысады. Қантты сақтау үшін ауа ағынын аз ұстаймыз.','Зёрна медленно теряют влагу и меняют цвет с зелёного на бледно-жёлтый. Мы держим слабый воздушный поток, чтобы сохранить сахара.','The beans slowly lose moisture and turn from green to pale yellow. We keep airflow low to preserve sugars.'],25]],
+[[['Майяр','Реакция Майяра','Maillard'],'165°C','6:30',['Қанттар мен амин қышқылдары әрекеттеседі. Нан мен ирис иісі пайда болып, дәндер алтын қоңыр түске енеді.','Сахара реагируют с аминокислотами. Появляются ароматы хлеба и ириса, зёрна становятся золотисто-коричневыми.','Sugars and amino acids react. Aromas of bread and toffee appear and the beans turn golden brown.'],45]],
+[[['Бірінші жарылыс','Первое растрескивание','First crack'],'196°C','9:00',['Бу жасуша қабырғаларын жарып, естілетін сыртыл шығарады. Жеңіл қуыру осы жерде аяқталады.','Пар разрывает клеточные стенки с отчётливым треском. Здесь заканчивается светлая обжарка.','Steam bursts the cell walls with an audible crack. This is where light roasts end.'],65]],
+[[['Дамыту','Развитие','Development'],'205°C','11:30',['Қуырушы қызуды азайтып, соңын бақылайды. Қышқылдық жұмсарып, тәттілік тереңдейді.','Обжарщик убавляет жар и ведёт финал. Кислотность смягчается, сладость углубляется.','The roaster trims heat and controls the finish. Acidity softens and sweetness deepens.'],85]],
+[[['Салқындату','Охлаждение','Cooling'],'25°C','12:30',['Ауамен салқындату қуыруды 4 минутта тоқтатады. Қаптамас бұрын дәндер 48 сағат демалады.','Воздушное охлаждение останавливает обжарку за 4 минуты. Перед упаковкой зёрна отдыхают 48 часов.','Air cooling stops the roast within 4 minutes. Beans rest for 48 hours before we bag them.'],100]]].map(x=>x[0]);
+const TIERS=[[['Бин','Бин','Bean'],0,['Туған күнге тегін сусын','Бесплатный напиток в день рождения','Free birthday drink']],[['Роуст','Роуст','Roast'],500,['Тегін көлем жаңартуы, жаңа лоттарға ерте қолжетімділік','Бесплатное увеличение размера, ранний доступ к новым лотам','Complimentary size upgrade, early access to new lots']],[['Крю','Крю','Cru'],1500,['Айына бір қап дән, тегін купинг шақырулары','Пачка зерна в месяц, бесплатные приглашения на каппинг','Monthly bag of beans, free cupping invitations']],[['Нуар','Нуар','Noir'],3000,['Қуыру цехындағы жеке сессиялар, тоқсан сайынғы сыйлық қорап, кезексіз қызмет','Частные сессии в обжарочной, подарочный набор раз в квартал, обслуживание без очереди','Private roastery sessions, quarterly gift box, no queues']]];
+const RTYPES=[['Үстел брондау','Бронь стола','Table reservation'],['Кофе дегустациясы','Дегустация кофе','Coffee tasting'],['Жеке купинг шеберлік сабағы','Частный мастер-класс по каппингу','Private cupping masterclass']];
+const TK={home:'home',menu:'menu',craft:'craft',locations:'locs',reserve:'reserve',club:'club'};
+const cart=[],S={tab:'espresso',loc:0,step:0,rev:0,item:null,sel:{},qty:1};
+const photo=(a,b)=>`<div class="photo" style="--c1:${a};--c2:${b}"><svg viewBox="0 0 100 125" fill="none" stroke="#C5A059" stroke-width=".4"><ellipse cx="50" cy="62" rx="22" ry="32" transform="rotate(28 50 62)"/><path d="M36 38c10 14 14 26 28 48" /><ellipse cx="50" cy="62" rx="32" ry="44" transform="rotate(28 50 62)" opacity=".4"/></svg></div>`;
+const isOpen=l=>{const h=new Date().getHours();return h>=l.h[0]&&h<l.h[1]};
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2600)}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mi=id=>MENU.find(x=>x[0]==id);
+const unit=(m,sel)=>OPTS[m[1]].reduce((p,g)=>p+g.o[sel[g.k]][1],m[4]);
+const labelOf=(m,sel)=>OPTS[m[1]].map(g=>g.o[sel[g.k]][0][L]).join(', ');
+
+/* ===== chrome ===== */
+function langHTML(){return LB.map((b,i)=>`<button class="${i==L?'on':''}" data-a="lang" data-i="${i}" aria-label="${b[2]}" aria-pressed="${i==L}"><span class="lg">${b[0]} </span>${b[1]}</button>`).join('')}
+function renderChrome(){
+ $('#links').innerHTML=['home','menu','craft','locations','reserve','club'].map(k=>`<a href="#${k}">${t(TK[k])}</a>`).join('')+`<div class="lang m" role="group">${langHTML()}</div>`;
+ $('#ld1').innerHTML=langHTML();$('#foot').textContent=t('foot');
+ $('#cartb').setAttribute('aria-label',t('cartOpen'));$('#burger').setAttribute('aria-label',t('navAria'));$('#dr').setAttribute('aria-label',t('cartT'));
+ document.documentElement.lang=LB[L][3]}
+function setLang(i){L=i;try{localStorage.setItem('vb_l',i)}catch(e){}
+ document.querySelectorAll('.ovl').forEach(o=>o.classList.remove('open'));renderChrome();drawCart();route(true)}
+
+/* ===== pages ===== */
+const P={};
+P.home=()=>{const l=LOCS[0];return `
+<section class="hero">
+ <div class="slide s0 on"></div><div class="slide s1"></div><div class="slide s2"></div>
+ <div class="wrap">
+  <div class="status"><span class="dot ${isOpen(l)?'':'off'}"></span>${isOpen(l)?t('stOpen',fmt(l.h[1])):t('stClosed',fmt(l.h[0]))}</div>
+  <h1>${t('h1')}</h1><p>${t('heroP')}</p>
+  <a class="btn" href="#menu">${t('btnMenu')}</a> <a class="btn ghost" href="#reserve">${t('btnBook')}</a>
+ </div>
+ <div class="dots" id="hd">${[0,1,2].map(i=>`<button class="${i?'':'on'}" data-a="slide" data-i="${i}" aria-label="${t('slideN',i+1)}"></button>`).join('')}</div>
+</section>
+<div class="tick"><div>${[0,1].map(()=>ORIG[L].map(x=>`<span>${x}</span>`).join('')).join('')}</div></div>
+<section class="sec"><div class="wrap grid g2">
+ ${photo('#8a6b35','#3a2a1c')}
+ <div><h2>${t('manT')}</h2><p class="mut" style="margin:20px 0 28px;max-width:480px">${t('manP')}</p><a class="btn ghost" href="#craft">${t('manBtn')}</a></div>
+</div></section>
+<section class="sec cream"><div class="wrap"><h2 style="text-align:center;margin-bottom:40px">${t('revT')}</h2>
+ <div class="rev" id="rev"></div>
+ <div style="text-align:center;margin-top:20px"><button class="chip" data-a="rev" data-d="-1" style="color:var(--ink)">${t('prev')}</button> <button class="chip" data-a="rev" data-d="1" style="color:var(--ink)">${t('next')}</button></div></div></section>`};
+
+P.menu=()=>`<section class="sec" style="padding-top:140px"><div class="wrap"><h2>${t('menuT')}</h2><p class="mut">${t('menuP')}</p>${L<2?`<p class="mut" style="font-size:.85rem;margin-top:6px">${t('curNote',C().r)}</p>`:''}
+<div class="tabs" role="tablist">${Object.entries(TABS).map(([k,v])=>`<button class="tab ${k==S.tab?'on':''}" data-a="tab" data-k="${k}" role="tab">${v[L]}</button>`).join('')}</div>
+<div class="grid g3">${MENU.filter(m=>m[1]==S.tab).map(m=>`<button class="card" data-a="item" data-id="${m[0]}"><h3>${m[2][L]}</h3><span class="mut" style="font-size:.9rem">${m[3][L]}</span><span class="pr"><span>${money(loc(m[4]))}</span><span>${t('custom')}</span></span></button>`).join('')}</div></div></section>`;
+
+P.craft=()=>`<section class="sec" style="padding-top:140px"><div class="wrap grid g2">
+<div><h2>${t('craftT')}</h2><p class="mut" style="margin-top:20px">${t('craftP')}</p></div>${photo('#5a6048','#2a2622')}</div></section>
+<section class="sec cream"><div class="wrap grid g2">
+<div style="aspect-ratio:1;max-width:340px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#c9a77a,#6b4a2b 60%,#2f2118);margin:auto;width:100%"></div>
+<div><h2>${t('roT')}</h2><p class="mut" style="margin:18px 0">${t('roP')}</p></div></div></section>
+<section class="sec"><div class="wrap"><h2>${t('roastT')}</h2><p class="mut" style="margin:12px 0 28px">${t('roastP')}</p>
+<div class="steps" id="st"></div><div class="bar"><i id="sb"></i></div><div id="sd"></div></div></section>`;
+
+P.locations=()=>`<section class="sec" style="padding-top:140px"><div class="wrap"><h2>${t('locT')}</h2>
+<div class="tabs">${LOCS.map((l,i)=>`<button class="tab ${i==S.loc?'on':''}" data-a="loc" data-i="${i}">${l.n[L]}</button>`).join('')}</div><div class="grid g2" id="ld"></div></div></section>`;
+
+P.reserve=()=>`<section class="sec cream" style="padding-top:140px"><div class="wrap grid g2" style="align-items:start"><div><h2>${t('resT')}</h2><p class="mut" style="margin-top:18px;max-width:420px">${t('resP')}</p></div>
+<div id="rf"><form id="f" novalidate>
+<label for="rt">${t('resWhat')}</label><select id="rt">${RTYPES.map(x=>`<option>${x[L]}</option>`).join('')}</select>
+<label for="rn">${t('fName')}</label><input id="rn" autocomplete="name"><div class="err" data-e="rn"></div>
+<label for="re">${t('fMail')}</label><input id="re" type="email" autocomplete="email"><div class="err" data-e="re"></div>
+<label for="rl">${t('fLoc')}</label><select id="rl">${LOCS.map(l=>`<option>${l.n[L]}</option>`).join('')}</select>
+<div style="display:flex;gap:16px"><div style="flex:1"><label for="rd">${t('fDate')}</label><input id="rd" type="date"><div class="err" data-e="rd"></div></div><div style="flex:1"><label for="rm">${t('fTime')}</label><select id="rm">${['09:00','11:00','13:00','15:00','17:00','19:00'].map(x=>`<option>${x}</option>`).join('')}</select></div></div>
+<label for="rg">${t('fGuests')}</label><select id="rg">${[...Array(12)].map((_,i)=>`<option>${i+1}</option>`).join('')}</select>
+<button class="btn" style="margin-top:24px;width:100%">${t('confirm')}</button></form></div></div></section>`;
+
+P.club=()=>{const c=C();return `<section class="sec" style="padding-top:140px"><div class="wrap"><h2>${t('club')}</h2><p class="mut" style="margin:12px 0 32px;max-width:520px">${t('clubP',unitTxt())}</p>
+<div class="grid g3">${TIERS.map((x,i)=>`<div class="tier" data-t="${i}"><h3>${x[0][L]}</h3><div class="gold" style="margin:4px 0 10px">${t('ptsYear',x[1])}</div><div class="mut" style="font-size:.9rem">${x[2][L]}</div></div>`).join('')}</div></div></section>
+<section class="sec cream"><div class="wrap grid g2" style="align-items:start"><div><h2>${t('estT')}</h2>
+<label for="v">${t('visits')} <b id="vv">3</b></label><input id="v" type="range" min="1" max="14" value="3">
+<label for="sp">${t('spend')} <b id="sv"></b></label><input id="sp" type="range" min="${c.r*4}" max="${c.r*60}" step="${c.ss}" value="${c.r*12}">
+<h3 style="margin-top:28px" id="res"></h3><div class="bar"><i id="pb"></i></div><div class="mut" id="nx"></div></div>
+<div id="cf"><h3>${t('joinT')}</h3><form id="f2" novalidate><label for="cn">${t('jName')}</label><input id="cn"><div class="err" data-e="cn"></div><label for="ce">${t('fMail')}</label><input id="ce" type="email"><div class="err" data-e="ce"></div><button class="btn" style="margin-top:20px;width:100%">${t('joinBtn')}</button></form></div></div></section>`};
+
+/* ===== router ===== */
+let timer;
+function route(keep){const k=(location.hash||'#home').slice(1);const r=P[k]?k:'home';
+ $('#app').innerHTML=`<div class="page">${P[r]()}</div>`;if(!keep)scrollTo(0,0);
+ document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+r));
+ $('#links').classList.remove('open');clearInterval(timer);document.title='VELVET & BEAN — '+t(TK[r]);
+ ({home:initHome,craft:initCraft,locations:initLoc,reserve:initRes,club:initClub})[r]?.()}
+addEventListener('hashchange',()=>route());
+
+function initHome(){let i=0;const go=n=>{i=n;document.querySelectorAll('.slide').forEach((s,j)=>s.classList.toggle('on',j==n));document.querySelectorAll('#hd button').forEach((s,j)=>s.classList.toggle('on',j==n))};
+ S.go=go;timer=setInterval(()=>go((i+1)%3),6000);showRev(0)}
+function showRev(d){S.rev=(S.rev+d+3)%3;const r=REVS[L][S.rev];$('#rev').innerHTML=`<q>${r[0]}</q><p class="mut" style="margin-top:18px">${r[1]}</p>`}
+function initCraft(){$('#st').innerHTML=STEPS.map((s,i)=>`<button data-a="step" data-i="${i}">${s[0][L]}<br><span class="mut">${s[2]}</span></button>`).join('');setStep(S.step)}
+function setStep(i){S.step=i;const s=STEPS[i];document.querySelectorAll('#st button').forEach((b,j)=>b.classList.toggle('on',j==i));$('#sb').style.width=s[4]+'%';$('#sd').innerHTML=`<h3>${s[0][L]} <span class="gold">· ${s[1]}</span></h3><p class="mut" style="max-width:640px;margin-top:8px">${s[3][L]}</p>`}
+function initLoc(){const l=LOCS[S.loc],o=isOpen(l);
+ const pins=LOCS.map((p,i)=>`<g class="pin" data-a="loc" data-i="${i}"><circle cx="${p.x}" cy="${p.y}" r="${i==S.loc?14:8}" fill="${i==S.loc?'#C5A059':'#8A9378'}" opacity=".9"/><text x="${p.x+16}" y="${p.y+4}">${p.sn[L]}</text></g>`).join('');
+ $('#ld').innerHTML=`<div><h3>${l.n[L]}</h3><p class="mut" style="margin:8px 0">${l.a[L]}</p><p>${l.d[L]}</p>
+ <p style="margin:18px 0"><span class="dot ${o?'':'off'}" style="display:inline-block"></span> ${o?t('openNow'):t('closedNow')} · ${fmt(l.h[0])} – ${fmt(l.h[1])}, ${t('daily')}</p>
+ <a class="btn" href="tel:${l.t.replace(/\s/g,'')}">${t('call',l.t)}</a> <a class="btn ghost" href="#reserve">${t('resHere')}</a></div>
+ <svg class="map" viewBox="0 0 640 300" role="img" aria-label="${t('mapAria')}"><path d="M0 200C120 160 200 230 330 170S520 120 640 190M80 0C120 100 160 220 140 300M380 0C400 100 440 200 520 300" stroke="#3a3632" stroke-width="10" fill="none"/><path d="M0 110C150 90 300 130 640 60" stroke="#2f2c28" stroke-width="5" fill="none"/>${pins}</svg>`}
+function initRes(){const d=$('#rd');d.min=new Date().toISOString().slice(0,10);
+ $('#f').onsubmit=e=>{e.preventDefault();const E={};const g=id=>$('#'+id).value.trim();
+ if(g('rn').length<2)E.rn=t('eName');if(!/^\S+@\S+\.\S+$/.test(g('re')))E.re=t('eMail');
+ if(!g('rd'))E.rd=t('eDate');else if(g('rd')<d.min)E.rd=t('ePast');
+ document.querySelectorAll('[data-e]').forEach(x=>x.textContent=E[x.dataset.e]||'');if(Object.keys(E).length)return;
+ const ref='VB-'+Math.random().toString(36).slice(2,7).toUpperCase();
+ $('#rf').innerHTML=`<div class="ok"><div class="gold">${t('okBook')}</div><div class="no">${ref}</div><p>${t('okBookP',esc($('#rt').value),$('#rg').value,esc($('#rl').value),g('rd'),$('#rm').value,esc(g('re')))}</p><button class="btn ghost" style="margin-top:22px" data-a="again">${t('again')}</button></div>`;toast(t('toastB'))}}
+function initClub(){const c=C();const calc=()=>{const v=+$('#v').value,s=+$('#sp').value,pts=Math.round(v*(s/c.r)*52*2);$('#vv').textContent=v;$('#sv').textContent=money(s);
+ let ti=0;TIERS.forEach((x,i)=>{if(pts>=x[1])ti=i});const n=TIERS[ti+1];
+ $('#res').textContent=t('resLine',pts.toLocaleString(LB[L][3]),TIERS[ti][0][L]);
+ $('#pb').style.width=(n?Math.min(100,(pts-TIERS[ti][1])/(n[1]-TIERS[ti][1])*100):100)+'%';
+ $('#nx').textContent=n?t('nextT',n[0][L],(n[1]-pts).toLocaleString(LB[L][3])):t('topT');
+ document.querySelectorAll('.tier').forEach((e,i)=>e.classList.toggle('on',i==ti))};
+ $('#v').oninput=$('#sp').oninput=calc;calc();
+ $('#f2').onsubmit=e=>{e.preventDefault();const E={};if($('#cn').value.trim().length<2)E.cn=t('eN');if(!/^\S+@\S+\.\S+$/.test($('#ce').value))E.ce=t('eMail');
+ document.querySelectorAll('[data-e]').forEach(x=>x.textContent=E[x.dataset.e]||'');if(Object.keys(E).length)return;
+ $('#cf').innerHTML=`<div class="ok"><div class="gold">${t('welcome')}</div><div class="no">${esc($('#cn').value.trim().split(' ')[0])}</div><p>${t('welcomeP')}</p></div>`;toast(t('toastM'))}}
+
+/* ===== item modal ===== */
+function openItem(id){const m=mi(id);S.item=m;S.qty=1;S.sel={};OPTS[m[1]].forEach(g=>S.sel[g.k]=0);drawItem();$('#mo').classList.add('open')}
+function drawItem(){const m=S.item;$('#mbox').innerHTML=`<div style="display:flex;justify-content:space-between"><h3>${m[2][L]}</h3><button data-a="close" aria-label="${t('close')}">✕</button></div><p class="mut" style="margin-top:6px">${m[3][L]}</p>
+${OPTS[m[1]].map(g=>`<div class="opt">${g.l[L]}</div><div class="chips">${g.o.map((o,i)=>`<button class="chip ${S.sel[g.k]==i?'on':''}" data-a="opt" data-k="${g.k}" data-v="${i}">${o[0][L]}${o[1]?' +'+money(loc(o[1])):''}</button>`).join('')}</div>`).join('')}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:28px"><div class="qty"><button data-a="q" data-d="-1" aria-label="${t('less')}">−</button><span>${S.qty}</span><button data-a="q" data-d="1" aria-label="${t('more')}">+</button></div><button class="btn" data-a="add">${t('add',money(loc(unit(m,S.sel))*S.qty))}</button></div>`}
+
+/* ===== cart ===== */
+const lineP=c=>loc(unit(mi(c.id),c.sel));
+const totals=()=>{const s=cart.reduce((a,c)=>a+lineP(c)*c.q,0),x=rnd(s*TAX);return{s,t:x,g:s+x}};
+function drawCart(){$('#cnt').textContent=cart.reduce((a,c)=>a+c.q,0);const T=totals();
+ $('#dr').innerHTML=`<div style="display:flex;justify-content:space-between"><h3>${t('cartT')}</h3><button data-a="dclose" aria-label="${t('cartClose')}">✕</button></div><div class="dbody">${cart.length?cart.map((c,i)=>{const m=mi(c.id);return `<div class="line"><div>${m[2][L]}<small>${labelOf(m,c.sel)}</small><div class="qty"><button data-a="cq" data-i="${i}" data-d="-1" aria-label="${t('less')}">−</button>${c.q}<button data-a="cq" data-i="${i}" data-d="1" aria-label="${t('more')}">+</button></div></div><div style="text-align:right">${money(lineP(c)*c.q)}<br><button class="mut" data-a="rm" data-i="${i}" style="font-size:.8rem;text-decoration:underline">${t('rm')}</button></div></div>`}).join(''):`<p class="mut">${t('empty')}</p>`}</div>
+ <div class="row"><span>${t('sub')}</span><span>${money(T.s)}</span></div><div class="row"><span>${t('tax')}</span><span>${money(T.t)}</span></div><div class="row tot"><span>${t('tot')}</span><span>${money(T.g)}</span></div>
+ ${cart.length?`<button class="btn" style="margin-top:18px;width:100%" data-a="checkout">${t('chk')}</button>`:`<a class="btn" href="#menu" style="margin-top:18px;text-align:center" data-a="dclose">${t('browse')}</a>`}`}
+function checkout(){const T=totals();$('#dr').classList.remove('open');$('#cbox').innerHTML=`<div style="display:flex;justify-content:space-between"><h3>${t('payT')}</h3><button data-a="close" aria-label="${t('close')}">✕</button></div><form id="pf" novalidate><label for="pn">${t('cName')}</label><input id="pn"><div class="err" data-e="pn"></div><label for="pc">${t('cNo')}</label><input id="pc" inputmode="numeric" placeholder="4242 4242 4242 4242"><div class="err" data-e="pc"></div><div style="display:flex;gap:16px"><div style="flex:1"><label for="px">${t('cExp')}</label><input id="px" placeholder="${t('expPh')}"><div class="err" data-e="px"></div></div><div style="flex:1"><label for="pv">CVC</label><input id="pv" inputmode="numeric" maxlength="4"><div class="err" data-e="pv"></div></div></div><div class="row tot" style="margin-top:20px"><span>${t('tot')}</span><span>${money(T.g)}</span></div><button class="btn" style="margin-top:18px;width:100%">${t('payBtn',money(T.g))}</button></form>`;
+ $('#co').classList.add('open');
+ $('#pf').onsubmit=e=>{e.preventDefault();const E={},v=id=>$('#'+id).value.trim();
+ if(v('pn').length<2)E.pn=t('eCN');if(v('pc').replace(/\s/g,'').length<13||/\D/.test(v('pc').replace(/\s/g,'')))E.pc=t('eCNo');
+ if(!/^(0[1-9]|1[0-2])\/\d{2}$/.test(v('px')))E.px=t('eExp');if(!/^\d{3,4}$/.test(v('pv')))E.pv=t('eCvc');
+ document.querySelectorAll('#pf [data-e]').forEach(x=>x.textContent=E[x.dataset.e]||'');if(Object.keys(E).length)return;
+ const no='#'+(10000+Math.floor(Math.random()*89999)),g=money(T.g);cart.length=0;drawCart();
+ $('#cbox').innerHTML=`<div class="ok"><div class="gold">${t('paid')}</div><div class="no">${t('orderN',no)}</div><p>${t('paidP',g)}</p><button class="btn" style="margin-top:22px" data-a="close">${t('done')}</button></div>`}}
+
+/* ===== events ===== */
+document.addEventListener('click',e=>{
+ if(e.target.classList.contains('ovl'))e.target.classList.remove('open');
+ const b=e.target.closest('[data-a]');if(!b)return;const d=b.dataset,a=d.a;
+ if(a=='lang')setLang(+d.i);
+ else if(a=='cart'){drawCart();$('#dr').classList.add('open')}
+ else if(a=='dclose')$('#dr').classList.remove('open');
+ else if(a=='burger')$('#links').classList.toggle('open');
+ else if(a=='close')document.querySelectorAll('.ovl').forEach(o=>o.classList.remove('open'));
+ else if(a=='tab'){S.tab=d.k;route(true)}
+ else if(a=='item')openItem(d.id);
+ else if(a=='opt'){S.sel[d.k]=+d.v;drawItem()}
+ else if(a=='q'){S.qty=Math.max(1,S.qty+ +d.d);drawItem()}
+ else if(a=='add'){const f=cart.find(c=>c.id==S.item[0]&&JSON.stringify(c.sel)==JSON.stringify(S.sel));
+  f?f.q+=S.qty:cart.push({id:S.item[0],sel:{...S.sel},q:S.qty});drawCart();$('#mo').classList.remove('open');toast(t('added',S.item[2][L]))}
+ else if(a=='cq'){const c=cart[d.i];c.q+=+d.d;if(c.q<1)cart.splice(d.i,1);drawCart()}
+ else if(a=='rm'){cart.splice(d.i,1);drawCart()}
+ else if(a=='checkout')checkout();
+ else if(a=='slide'){S.go(+d.i)}
+ else if(a=='rev')showRev(+d.d);
+ else if(a=='step')setStep(+d.i);
+ else if(a=='loc'){S.loc=+d.i;route(true)}
+ else if(a=='again')route(true);
+});
+addEventListener('keydown',e=>{if(e.key=='Escape'){document.querySelectorAll('.ovl').forEach(o=>o.classList.remove('open'));$('#dr').classList.remove('open')}});
+if(matchMedia('(hover:hover) and (pointer:fine)').matches){document.body.classList.add('cc');let x=0,y=0,rx=0,ry=0;
+ addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;$('#cur').style.transform=`translate(${x}px,${y}px)`;$('#ring').classList.toggle('h',!!e.target.closest('a,button,input,select,.card'))});
+ (function l(){rx+=(x-rx)*.18;ry+=(y-ry)*.18;$('#ring').style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(l)})()}
+renderChrome();drawCart();route();
+</script>
+</body>
+</html>
